@@ -19,6 +19,13 @@ NEWSPIDER_MODULE = 'scrapy_tuts_2.spiders'
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
 
+
+
+# use for proxy pool tool to bypass
+# PROXY_POOL_ENABLED = True
+
+
+
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
 
@@ -54,6 +61,25 @@ ROBOTSTXT_OBEY = True
 #    'scrapy_tuts_2.middlewares.ScrapyTuts2DownloaderMiddleware': 543,
 #}
 
+
+
+# scrapy user agent middleware to use google user agent
+DOWNLOADER_MIDDLEWARES = {
+    'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
+    'scrapy_user_agents.middlewares.RandomUserAgentMiddleware': 400,
+}
+
+
+# proxy middlewares to user other ip address
+# DOWNLOADER_MIDDLEWARES = {
+#     # ...
+#     'scrapy_proxy_pool.middlewares.ProxyPoolMiddleware': 610,
+#     'scrapy_proxy_pool.middlewares.BanDetectionMiddleware': 620,
+#     # ...
+# }
+
+
+
 # Enable or disable extensions
 # See https://docs.scrapy.org/en/latest/topics/extensions.html
 #EXTENSIONS = {
@@ -62,9 +88,9 @@ ROBOTSTXT_OBEY = True
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    'scrapy_tuts_2.pipelines.ScrapyTuts2Pipeline': 300,
-#}
+ITEM_PIPELINES = {
+   'scrapy_tuts_2.pipelines.ScrapyTuts2Pipeline': 300,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
